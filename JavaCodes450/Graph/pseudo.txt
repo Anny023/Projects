@@ -1,0 +1,55 @@
+two function for traversing visiting  dfstraversal()
+one for recursion==dfs(node,storelist,givenlist,arr)
+
+public void dfs(int node,boolean arr[],ArrayList<ArrayList<Integer>> givenlist,ArrayList<Integer>storelist){
+    storelist.add(node);
+    arr[node]=true;// means 1
+    for(Integer it:adj.get(node)){
+        if(arr[it]==false){
+            dfs(it,vis,adj,storelist);
+        }
+    }
+}
+
+
+
+public ArrayList<Integer> dfstraversal(int v,ArrayList<ArrayList<Integer>> givenlist){
+    ArrayList<Integer> storelist=new ArrayList<>();
+    boolean arr[]=new boolean[v+1];
+    for(int i=0;i<=v;i++){
+        if(arr[i]==false){ // not visited
+            dfs(i,arr,storelist);
+        }
+    }
+    return storelist;
+
+}
+
+
+Queue<Integer> q=new Queue<>();
+ArrayList<Integer> storelist=new ArrayList<Integer>();
+
+public ArrayList<Integer> bfsOfGraph(int v,ArrayList<ArrayList<Integer>> adj){
+    ArrayList<Integer> bfs=new ArrayList<>();
+    boolean arr[]=new boolean[v+1];
+
+    for(int i=1;i<=v;i++){
+        if(v[i]==false){ //check if visited or not
+
+            Queue<Integer> q=new LinkedList<>();
+            q.add(i); //adds for which bfs has beed called
+            arr[i]=true;
+
+            while(!q.isEmpty()){   until q non empty
+                Integer node=q.poll(); take top nd deletes
+                bfs.add(node);
+                for(Integer it:adj.get(node)){  // after taking out node from the 
+                    if(arr[it]==false){    // we traverse for its adjecent nodes then will add the nodes in thw list and put it into the queue and same time visited mark it as true
+                        arr[i]=true;
+                        q.add(it);
+                    }
+                }
+            }
+        }
+    }
+}
